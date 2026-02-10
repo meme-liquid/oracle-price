@@ -122,8 +122,8 @@ Total: 251 bytes (+ 8 byte Anchor discriminator = 259 bytes)
 
 | Market | Slab | Pool | Oracle PDA |
 |--------|------|------|------------|
-| LIQUID/SOL | `GxhEAi8Z...` | `Hv7KcoMc...` | `8iW2s5yM...` |
-| Buttcoin/SOL | `2UfcqQ4o...` | `FFcYgSSg...` | `FL7tP92y...` |
+| LIQUID/SOL | `GxhEAi8ZfrQxS7MLokCZQSGQKJXYjpp3gZzSP8X47Df8` | `Hv7KcoMceKmk4AQdTRHq2XwdEMCLabGsR99RwiMdGcha` | `8iW2s5yMVL9u8Tj4fBmq88gmAMspxEHAhshwjSHQNBDJ` |
+| Buttcoin/SOL | `2UfcqQ4oftBBdb6kyve1FMqyZBontpEHgkY3LZkkugTe` | `FFcYgSSgWHforA9rXXkA48p8YFoz8TSW85Jpo3CQHDyS` | `FL7tP92yTMqCCMnSiHQLE52Rx449n9ifnR9pszsgNnik` |
 
 ## Dependencies
 
