@@ -1,0 +1,17 @@
+# Build artifacts
+target/
+
+# Program keypair (secret)
+program_keypair.json
+
+# Internal docs
+ARCHITECTURE.md
+
+# Scripts (contain RPC keys and admin paths)
+scripts/
+
+# Node
+node_modules/
+
+# OS
+.DS_Store
