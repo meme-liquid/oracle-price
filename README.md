@@ -1,8 +1,14 @@
 # Oracle Price Program
 
-On-chain price oracle for the [MemeLiquid](https://memeliquid.io) perpetuals platform. Computes `TOKEN/USD` prices by reading PumpSwap AMM reserves and Pyth Network SOL/USD feed, then pushes the Time-Weighted Average Price (TWAP) to [percolator-prog](https://github.com/meme-liquid) via Cross-Program Invocation (CPI).
-
 **Program ID:** `Liquidbdbaw2nFfqbjGGggc4vr4m48sfLzkAoQ7sw4n`
+
+## Overview
+
+Oracle Price is a fully on-chain price oracle for the [MemeLiquid](https://memeliquid.io) perpetuals platform. Instead of relying on an off-chain server to compute and sign prices, this program reads PumpSwap AMM pool reserves and Pyth Network's SOL/USD feed directly on Solana, calculates the TOKEN/USD price entirely on-chain using u128 integer arithmetic, and pushes it to the perpetuals engine via Cross-Program Invocation (CPI).
+
+To protect against single-block price manipulation, the program maintains a TWAP (Time-Weighted Average Price) using a 10-sample ring buffer. Each time a price is pushed, the spot price is recorded in the buffer and the average of all samples is computed. Only this TWAP average is sent to the perpetuals engine — so even if someone manipulates the AMM pool in a single block, the impact on the oracle price is limited to 1/10th of the manipulation. Combined with a one-push-per-slot rate limit, Pyth staleness checks (60s max), confidence interval validation (5% max), and a 10% price cap circuit breaker on the perpetuals side, the system provides multiple layers of defense against oracle manipulation.
+
+The oracle authority is a PDA (Program Derived Address) owned by this program — no human wallet can push prices directly. Anyone can call `push_price` permissionlessly (after the initial 10-push warm-up period), and the program will compute the correct price from on-chain data. This makes the price feed fully trustless and eliminates single points of failure.
 
 ## How It Works
 
